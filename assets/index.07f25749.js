@@ -2938,7 +2938,7 @@ var Encoding;
   Encoding2["UTF16"] = "utf16";
 })(Encoding || (Encoding = {}));
 const Filesystem = registerPlugin("Filesystem", {
-  web: () => __vitePreload(() => import("./web.a6a13413.js"), true ? [] : void 0).then((m2) => new m2.FilesystemWeb())
+  web: () => __vitePreload(() => import("./web.bcf8383b.js"), true ? [] : void 0).then((m2) => new m2.FilesystemWeb())
 });
 var Style;
 (function(Style2) {
@@ -3227,6 +3227,10 @@ StatusBar.setStyle({ style: Style.Dark });
 const platform = Capacitor.getPlatform();
 const url = new URL(window.location);
 let port = "3000";
+let protocol = "http:";
+if (url.protocol === "https:") {
+  protocol = "https:";
+}
 if (url.hostname === "localhost" && url.port) {
   port = url.port;
 }
@@ -3314,7 +3318,7 @@ async function load() {
   try {
     const client = await ir({
       iframe: wp,
-      remoteUrl: `http://${url.hostname}:${port}/remote.html`,
+      remoteUrl: `${protocol}//${url.hostname}:${port}/remote.html`,
       blueprint: {
         landingPage: "/wp-admin/edit.php?post_type=hypernote",
         preferredVersions: {
